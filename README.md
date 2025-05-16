@@ -1,5 +1,7 @@
 This repository contains the work that I and Sam Richter did as part of UW-Madison's LIS 500: Code and Power. As part of that course we were tasked with building a website to communicate our understanding of intersectionality, and showcase tech heroes who are not frequently featured in the news. For the final project we worked with Google's Teachable Machine as a way of demystifying machine learning and exploring the successes and failures of the technology.
 
+No AI was used in the generation of the code for this website outside of the basic intellisense that was included in JetBrain's PHPStorm product.
+
 Sam's LinkedIn can be found at: https://www.linkedin.com/in/sam-richter-47b7a0144/
 
 Mike Shonty's Portfolio can be found at: https://mikeshonty.com/
