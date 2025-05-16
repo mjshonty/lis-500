@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Model | Sam Richter and Mike Shonty</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+</head>
+<body>
+<!-- nav element styled to center container-->
+<nav id="main-nav-container">
+    <!--Centers the content in the nav bar and styles it-->
+    <div id="main-nav-contents">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hero.html">Tech Heroes</a></li>
+            <li><a href="resources.html">Implicit Bias</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a class="active" href="model.html">AI Exploration</a></li>
+        </ul>
+    </div>
+</nav>
+<main>
+
+<!--Creates sidenav for the model.html page-->
+    <div class="sidenav">
+        <a href=model.html#overview>Overview</a>
+        <a href="model.html#function">Project Function and Why</a>
+        <a href="model.html#scope">Process and Scope of Work</a>
+        <a href="model.html#takeaways">Takeaways</a>
+        <a href="model.html#demo">The Model in Action</a>
+        <a href="model.html#our-model">Get the Code!</a>
+    </div>
+
+<!--Each div on this page has an anchor point for the sidenav to jump to-->
+    <div>
+        <h2 id="overview">Overview</h2>
+        <p>
+            This project has been a learning experience for both of the authors. AI is a word that one cannot seem to
+            escape, nor can one seem to escape the promises that it will change the world in a net positive way. We have
+            doubts about that, but Dr. Joy Buolawmini’s book “Unmasking AI” gave us a lot to reflect on and left us feeling
+            optimistic that the world imagined by the oft reported on tech leaders is not inevitable.
+        </p>
+        <P>
+            While there is much technical work that went into this project, and Dr. Joy is very much a technical expert,
+            it was her journey from academic to organizer that has been so resonant throughout this assignment. Both the
+            authors of this website are history undergraduates and neither works with computers in the highly technical
+            way a computer scientist or full stack developer might, so to see how Dr. Joy’s work was more humanitarian
+            and less technical was inspiring to us.
+        </P>
+        <p>
+            Often it seems that one needs a deep understanding of something technical before they can bring something into
+            the discussion, but Dr. Joy’s most impactful work was done through art and organizing. It was especially
+            gratifying to see how, even in uncertainty, her commitment to giving the unseen and unheard a voice was a constant.
+            One part of the book that was particularly resonant with us was when Dr. Joy asked if she was
+            “... contributing to the ongoing exploitation of people like me?” (<i>Unmasking AI</i> p.176). She goes on to relay how, in 2019,
+            a Google subcontractor strong-armed homeless people into handing over their faces to be used for training, and
+            notes that research like hers, meant to demonstrate how these AI models exclude people, can “... inspire
+            predatory efforts to collect more data without regard for privacy or informed consent.” (<i>Unmasking AI</i> p.177)
+        </p>
+        <p>
+            Another piece that was resonant as we worked on this project was around how much of our surroundings we just
+            accept. As Dr. Joy went through the history of technological developments like the camera and up into computer
+            vision, it was easy to imagine a world that looked entirely different. One that included the views of the
+            underrepresented and historically marginalized, one that valued human endeavours over profit. As she states
+            “The work towards algorithmic justice must not be just international; it must also be intergenerational.”
+            (<i>Unmasking AI</i> p.297). This project made us think deeply about how AI was presented to us day to day,
+            how its use was portrayed, and what we were implicitly saying with all the language and images used in our project.
+        </p>
+    </div>
+
+    <div>
+        <h2 id="function">Project Function and Why?</h2>
+        <p>
+            Using Google’s Teachable Machine we trained a computer vision model to detect images of cats. Both authors
+            have cats, so we used images of our cats to create a model that detects grey cats and orange cats. This seemed
+            like a lighthearted and fun example to test out creating a model that can detect things of the same species
+            with color variations in their fur. We further expanded on this to have the model tell when something is not a cat.
+        </p>
+        <p>
+            Teachable Machine is a powerful tool, and the models created with it are publicly accessible. By choosing our
+            cats as the focus of our project we hope that we do not inadvertently add to the harms that machine learning models,
+            especially those models that are calibrated without the consent and the feedback of those who are subject to
+            their use. Dr. Buolawmini’s own struggle with the ethics of sourcing data sets for model training were influential
+            when we started to work on this project. Although this project is far less serious than the work of Dr. Joy,
+            our brief experience with this machine learning model demonstrated many of the pitfalls she speaks about in
+            <i>Unmasking AI</i>. These will be explored below in the process section.
+        </p>
+    </div>
+
+    <div>
+        <h2 id="scope">Process and Scope of Work</h2>
+        <p>
+            For this project we each contributed around 10 to 12 pictures of our cats for an orange cat class and gray
+            cat class. After running the model with the defaults of Teachable Machine and testing with some of the images
+            we used, we followed that up by testing with some pictures found on the internet as well as pictures of Mike’s
+            other cat. After loading up a random image of a german shepherd into the model and seeing it come back as
+            “orange cat” we discovered that by creating two classes, we necessarily were grouping everything into them.
+            It was at this point that we created another class, “Not a cat” and trained this on 14 of our own images that
+            were not cats. This proved to return better results, but there were still some issues.
+        </p>
+        <p>
+            We began tweaking the epoch field, allowing us to run more training cycles with the data we had. Again we
+            saw better results, but decided to tweak the model further using the Learning Rate field. The final parameters
+            of the model were as follows:
+        </p>
+        <ul>
+            <li>Epochs: 65000</li>
+            <li>Batch Size: 16</li>
+            <li>Learning Rate: 0.0011</li>
+        </ul>
+        <p>
+            We were seeing much better results this time around, but still found gaps in our model. What happens when we
+            have images that contain multiple cats who have different colored coats? What about just one cat who doesn’t
+            have a fully orange or fully grey coat? What about a cat with a completely different coat color? Some of these
+            passed if they were close enough to data in our training set, but others were showing as “Not a cat” in spite
+            of very much being a cat. While testing our model we saw first hand how we excluded some cats in the cat classes
+            and included non-cats in the cat classes. These failures were part of very real scenarios and are so obvious
+            in retrospect, but that we did not run into until after the model was trained.
+        </p>
+        <p>
+            There were also other strange issues that we ran into. After uploading the model tests that were working in
+            the Teachable Machine training page were failing on the shareable link page. Neither one of us is capable of
+            explaining this, and it brings to mind the reality that just because these models work prior to being deployed,
+            doesn’t mean they will continue to work.
+        </p>
+        <p>
+            In addition to the considerations we did not really take into account until we began working with the model,
+            we also were aware of things like lighting, camera quality, the difficulty of getting cats to stay still for
+            live testing, and how putting up a phone screen displaying a cat’s picture could impact the final result.
+        </p>
+    </div>
+
+    <div>
+        <h2 id="takeaways">Takeaways</h2>
+        <p>
+            Learning about training AI models made the entire thing feel less scary to me in a way. AI is often presented
+            as this thing that can take over the world (and maybe it will, but who is to say for sure). However, being
+            more hands on with creating a model demystified the process a little bit. Even though this is by no means a
+            complex model, we were able to see the process of teaching a machine and fine tuning the responses it gives
+            to improve the accuracy of the results. What we found is that this technology is available to use, and misuse,
+            by nearly anyone. Even within the small scope of this project, using our cats, we failed to get it right the
+            first time, and realistically it’s unlikely that we’ve found all of the fail states of our model. The process
+            was really interesting and enlightening on how AI models actually work.
+        </p>
+        <p>
+            In the United States, science, technology, engineering, and mathematics have long been treated as a mysterious
+            force that only the most elite should have the right to shape. Everyone else is “gifted” with the ability to
+            use the technology, but is not actively encouraged to participate in its creation. With the inauguration of
+            the 47th President of the United States sworn in surrounded by some of the most powerful and talked about
+            figures in the tech industry, this project and the class that it is part of could not have come at a more
+            prescient time. Technology is shaped by those who create it, and in turn its use shapes the societies that use it.
+        </p>
+        <p>
+            The work to be done isn’t all technical, and we found this very empowering. Dr. Joy notes the need for
+            “artists who use their creativity … tenants who speak up … researchers who take the time to make work accessible…”
+            so that the public can better understand what hangs in the balance. (<i>Unmasking AI</i> p.205) If we fail to
+            seek out the voices of those who will come into contact with a technology or system, especially the voices
+            of those who are underrepresented and have been historically marginalized, those people are excluded. Whether
+            by accident or purpose, we will perpetuate an unjust system, and miss opportunities to not just imagine a
+            different way, but to create that way. We could not put it more succinctly than Dr. Joy Buolamwini:
+            “Algorithmic justice necessitates questioning the arbiters of truth, because those with the power to build AI
+            systems do not have a monopoly on truth.” (<i>Unmasking AI</i>p.124)
+        </p>
+    </div>
+
+    <div>
+        <h2 id="demo" class="flex-container-video">The Model in Action</h2>
+        <p>
+            Here you can see the model in action. You may notice it doesn't always get the right answer. Why is that? We
+            think we have a few ideas and the cause may not be limited to our inexperience.
+        </p>
+
+    <!--Class allows video players to grow and shrink with available space-->
+            <iframe
+                    class="iframe-video-youtube"
+                    title="YouTube video player"
+                    allowfullscreen="allowfullscreen"
+                    src="https://www.youtube.com/embed/AIW-4hYuSU8?si=aY2ELNUrHN9NDl1c" >
+            </iframe>
+        </div>
+    <div>
+        <h2 id="our-model">Get the Code!</h2>
+        <p>
+            You can find the code for our model on our GitHub where you're welcome to look under the hood. Additionally,
+            please feel free to take our model and tweak it yourself with Google's Teachable Machine.
+        </p>
+        <a class="stand-alone" href="https://github.com/MShonty88/lis500">GitHub Repo</a>
+        <p>
+            You can also try the model in real time. The first link leads to another page on this website. Because the
+            interactive demos utilizes a webcam we have placed on a different page so that visitors are not immediately asked to turn their camera on.
+            The second link leads to the model on Google's Teachable Machine website which displays the three classes that
+            can be seen in the demo video.
+        </p>
+        <a class="stand-alone" href=live-demo.html>Live Demo</a>
+        <a class="stand-alone" href="https://teachablemachine.withgoogle.com/models/2Mge6qydH/">Teachable Machine</a>
+    </div>
+</main>
+</body>
+</html>
